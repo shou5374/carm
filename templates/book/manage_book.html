@@ -1,0 +1,95 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'book/css/manage_book.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>予約管理</h1>
+        {% for book, passings, breakings in books %}
+            <div class="book__item">
+                <form action="" method="post">{% csrf_token %}
+                    <input class="book__item_text" name="book_pk" value="{{book.pk}}" hidden>
+                    <div class="under_line">&nbsp;車両番号：{{book.car.name}}</div>
+                    &nbsp;借用日：{{book.start_datetime|date:'Y-m-d'}}&nbsp;{{book.start_datetime|time:'H:i'}}<br>
+                    &nbsp;返却日：{{book.end_datetime|date:'Y-m-d'}}&nbsp;{{book.end_datetime|time:'H:i'}}<br>
+                    <button class="book__btn hover__item open__modal" type="button"id="{{book.pk}}" >キャンセル・削除</button>&nbsp;
+                    <button class="book__btn hover__item open__modal" type="button"id="{{book.pk}}_info" >詳細情報更新</button>&nbsp;<br>
+                    <button class="book__btn hover__item open__modal" type="button"id="{{book.pk}}_pass" >経過・休憩</button>&nbsp;
+                    <button class="book__btn hover__item" type="submit" name='action' value='report' formtarget="_blank">日報</button>
+                    <section id="modal__area__{{book.pk}}" class="modal__area">
+                        <div id="back--{{book.pk}}" class="modal__background"></div>
+                            <div class="modal__contents">
+                                <h1>予約キャンセル・削除</h1>
+                                <button type="submit" class="modal__btn hover__item" name="action" value="remove">確定</button>
+                                <button type="button" class="modal__btn hover__item close__modal" id="close--{{book.pk}}">閉じる</button>
+                                <hr>
+                                日報提出前に以下の予約を削除しますか？<br>
+                                <div class="modal__contents__text">
+                                    &nbsp;車両：{{book.car.name}}<br>
+                                    &nbsp;運転者：{{book.driver_name}}<br>
+                                    &nbsp;借用日：{{book.start_datetime|date:'Y-m-d'}}&nbsp;{{book.start_datetime|time:'H:i'}}<br>
+                                    &nbsp;返却日：{{book.end_datetime|date:'Y-m-d'}}&nbsp;{{book.end_datetime|time:'H:i'}}<br>
+                                </div>
+                            </div>
+                    </section>
+                    <section id="modal__area__{{book.pk}}_info" class="modal__area">
+                        <div id="back--{{book.pk}}_info" class="modal__background"></div>
+                            <div class="modal__contents">
+                                <h1>詳細情報更新</h1>
+                                <button type="submit" class="modal__btn hover__item" name="action" value="update_info">更新</button>
+                                <button type="button" class="modal__btn hover__item close__modal" id="close--{{book.pk}}_info">閉じる</button>
+                                <hr>
+                                <div class="modal__contents__text">
+                                    &nbsp;走行距離：<input type="number" class="modal__input" name="distance" value="{{book.distance}}">&nbsp;km<br>
+                                    &nbsp;補給量：<input type="number" class="modal__input" name="oil" value="{{book.oil}}">&nbsp;L<br>
+                                    &nbsp;通行料金（ETC）：<input type="number" class="modal__input" name="toll" value="{{book.toll}}">&nbsp;円<br>
+                                </div>
+                            </div>
+                    </section>
+                    <section id="modal__area__{{book.pk}}_pass" class="modal__area">
+                        <div id="back--{{book.pk}}_pass" class="modal__background"></div>
+                            <div class="modal__contents">
+                                <h1>経過・休憩情報追加・更新</h1>
+                                <button type="submit" class="modal__btn hover__item" name="action" value="add_pass">追加・更新</button>
+                                <button type="button" class="modal__btn hover__item close__modal" id="close--{{book.pk}}_pass">閉じる</button>
+                                <hr>
+                                <div class="modal__contents__text">
+                                    &nbsp;タイプ：<input class="pass__radio" type="radio" name="pass" checked="checked" value="pass">経過&nbsp;&nbsp;
+                                    <input type="radio" class="breaking__radio" name="pass" value="breaking">休憩<br>
+                                    <div class="pass__text">
+                                        &nbsp;発地：<input type="text" class="modal__input__wise" name="start_point"><br>
+                                        &nbsp;着地：<input type="text" class="modal__input__wise" name="end_point"><br>
+                                        &nbsp;積載状況：<input type="radio" name="has_bag" value="1" checked="checked">有&nbsp;&nbsp;<input type="radio" name="has_bag" value="0">無<br>
+                                        <hr>
+                                        記録一覧<br>
+                                        {% for item in passings %}
+                                            <div class="mini__text">{{item.start_point}}〜{{item.end_point}}&nbsp;(積載:{% if item.has_bag %}有{% else %}無{% endif %})</div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="breaking__text">
+                                        &nbsp;開始時刻：<input type="datetime-local" class="modal__input__wise" name="start_time"><br>
+                                        &nbsp;終了時刻：<input type="datetime-local" class="modal__input__wise" name="end_time"><br>
+                                        &nbsp;地点：<input type="text" class="modal__input__wise" name="point"><br>
+                                        <hr>
+                                        記録一覧<br>
+                                        {% for item in breakings %}
+                                            <div class="mini__text">
+                                                {{item.point}}:{{item.start_time|date:'m-d'}}&nbsp;{{item.start_time|time:'H:i'}}〜{{item.end_time|date:'m-d'}}&nbsp;{{item.end_time|time:'H:i'}}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                    </section>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'book/js/manage_book.js' %}"></script>
+{% endblock %}

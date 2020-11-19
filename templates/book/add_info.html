@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'book/css/add_info.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>予約・管理情報追加</h1>
+        {% for book in books %}
+            <div class="book__item">
+                <form action="" method="post">{% csrf_token %}
+                    aaaa
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'book/js/add_info.js' %}"></script>
+{% endblock %}

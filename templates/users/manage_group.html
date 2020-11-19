@@ -1,0 +1,47 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'users/css/manage_group.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="users__container">
+    <h1>グループ：{{group.name}}</h1>
+    <div class="members__container">
+        <button type="button" class="narrow__btn member__item__trigger"  data-filter=".approved">承認済みonly</button>
+        <button type="button" class="narrow__btn member__item__trigger"  data-filter=".application">未承認only</button>
+
+        <form action="" method="post">{% csrf_token %}
+            <div class="member_list">
+                {% for member in members %}
+                    {% if member != user %}
+                        <input type="text" name="group_name" value="{{group.name}}" hidden>
+                        <input type="text" name="member_email" value="{{member.email}}" hidden>
+                        <div class="member__item mix filter approved">
+                            <div class="member__item__text">{{member.username}}<br><span class="member__item__text__mini">{{member.email}}</span></div>
+                            <button class="approve__btn" type="button">承認済み</button>
+                            <button class="approve__btn" type="submit" name='action' value='remove_member'>削除</button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for member in unapproved_members %}
+                    {% if member != user %}
+                        <input type="text" name="group_name" value="{{group.name}}" hidden>
+                        <input type="text" name="member_email" value="{{member.email}}" hidden>
+                        <div class="member__item mix filter application">
+                            <div class="member__item__text">{{member.username}}<br><span class="member__item__text__mini">{{member.email}}</span></div>
+                            <button class="approve__btn" type="submit" name='action' value='approve'>承認</button>
+                            <button class="approve__btn" type="submit" name='action' value='remove_application'>削除</button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'users/js/manage_group.js' %}"></script>
+{% endblock %}

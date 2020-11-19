@@ -1,0 +1,67 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'book/css/booking.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Booking</h1>
+        {% if car is not None %}
+            <img class="car_image" src="{{car.image.url}}" /><br>
+            <button class="open__modal" id="{{car.name}}">予約一覧</button>
+            <section id="modal__area__{{car.name}}" class="modal__area">
+                <div id="back--{{car.name}}" class="modal__background"></div>
+                    <div class="modal__contents">
+                        <h1>予約一覧</h1>
+                        <button type="button" class="close__modal" id="close--{{car.name}}"><i class="fas fa-times"></i></button><br>
+                        <hr>
+                        <div class="schedule__container" id="day_container">
+                            {% for day, day_schedule in schedule.items %}
+                                <div class="schedule__item">
+                                    ▼{{day}}
+                                    <div class="schedule__times hidden__block">
+                                        {% for time, flag in day_schedule.items %}
+                                            {% if flag %}
+                                                <div class="booked">{{time}}</div>
+                                            {% else %}
+                                                <div class="not_booked">{{time}}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </section><br>
+            ※&nbsp;過去の使用情報の登録も可
+            <hr>
+            <form action="" method="post">{% csrf_token %}
+                {% if form.errors %}
+                    <div class="car__error__list">
+                        {% for errors in form.errors.values %}
+                            {% for error in errors %}
+                                {{ error }}<br>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% for field in form %}
+                    <div class="car__input__label">{{ field.label }}</div>
+                    <div class="car__input">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <div class="car__input"><button class="car__submit" type="submit" name='action' value='booking'>予約確定</button><br></div>
+            </form>
+        {% else %}
+            車両が選択されていません
+        {% endif %}
+        
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'book/js/booking.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,53 @@
+
+
+.narrow__btn {
+    width: 150px;
+    font-size: 16px;
+    padding: 2px 2px;
+    background-color: #5b3256;
+    color: white;
+
+}
+
+.narrow__btn:hover {
+    opacity: 0.5;
+}
+
+.members__container {
+    border: dotted 4px #5b3256;
+}
+
+.member__item {
+    padding: 0 0.5em;
+    margin: 0.5em 7px;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+    line-height: 0;
+
+}
+
+.member__item__text {
+    line-height: 1rem;
+    font-weight: bold; 
+}
+
+.member__item__text__mini {
+    font-size: 11px;
+    font-weight: normal; 
+}
+
+.approve__btn {
+    width: 120px;
+    font-size: 13px;
+    padding: 2px 2px;
+    margin: 0;
+    background-color: #fff8e8;
+    border: 2px dotted #ffc06e;
+    margin: 1px 0;
+    color: black;
+}
+
+.approve__btn:hover {
+    opacity: 0.5;
+}

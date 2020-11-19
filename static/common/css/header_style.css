@@ -1,0 +1,62 @@
+
+.site__header {
+    position: relative;
+    color: white;
+    background-color: #5b3256; 
+}
+
+.site__header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem; 
+}
+
+.site__header__start {
+    margin-left: 10px;
+}
+
+.user__info__toggle {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.user__image {
+    border-radius: 0.5rem;
+    height: 33px;
+    width: 33px;
+}
+
+.user__info {
+    z-index:2;
+    position:fixed;
+    top: 45px;
+    right:5px;
+    width: 270px;
+    padding: 0.5em 1em;
+    background: gainsboro;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .2);
+    border-radius: 9px;
+    line-height: 30px;
+}
+
+.hidden__user__info {
+    display: none;
+}
+
+/* Login Logout button */
+.user__info__item {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.user__info__item:hover {
+    color: #5b3256;
+    opacity: 0.8;
+}
+
+
+

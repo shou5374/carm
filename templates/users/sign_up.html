@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="users__container">
+        <img src="{% static 'common/images/logo_mini.png'%}" height="80px">
+        <h1>Sign up to CARM</h1>
+        <form action="" method="post">{% csrf_token %}
+            {% if form.errors %}
+                <div class="users__input">
+                    <div class="users__input__errors">
+                        {% for errors in form.errors.values %}
+                            {% for error in errors %}
+                                {{ error }}<br>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            {% for field in form %}
+                <div class="users__input">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="users__input"><button class="users__submit" type="submit" name='action' value='sign_up'>Sign up to CARM</button><br></div>
+        </form>
+    </div>
+{% endblock %}

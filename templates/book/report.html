@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'book/css/report.css' %}" type="text/css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="manage_id">管理No：</div>
+        <h2 class="title">運転日報</h2>
+        <table class="normal__table">
+            <tr><th class="colored__col mini__col">作成日</th><td>{{create_date|date:"Y年m月j日"}}</td><th class="colored__col mini__col">組織名</th><td>{{book.group.name}}</td></tr>
+            <tr><th class="colored__col mini__col">車両番号</th><td>{{book.car.name}}</td><th class="colored__col mini__col">運転者名</th><td>{{book.driver_name}}</td></tr>
+        </table><br>
+
+        <table class="dirve__datetime__table">
+            <tr><th rowspan="2" class="colored__col mini__col">運転日・時刻</th><td>出庫：&nbsp;&nbsp;{{book.start_datetime|date:"Y年m月j日"}}&nbsp;{{book.start_datetime|time:'H時i分'}}</td></tr>
+            <tr><td>入庫：&nbsp;&nbsp;{{book.end_datetime|date:"Y年m月j日"}}&nbsp;{{book.end_datetime|time:'H時i分'}}</td></tr>
+        </table><br>
+
+        （主な経過地）
+        <table class="normal__table">
+            <tr><th class="colored__col">発地</th><th class="colored__col">着地</th><th class="colored__col">積載状況</th></tr>
+            {% for item in passings %}
+                <tr><td class="schedule_date">{{item.start_point}}</td><td class="schedule_date">{{item.end_point}}</td><td>{% if item.has_bag %}有{% else %}無{% endif %}</td></tr>
+            {% endfor %}
+        </table><br>
+
+        （休憩地点・時間）
+        <table class="normal__table">
+            <tr><th class="colored__col">開始時刻</th><th class="colored__col">終了時刻</th><th class="colored__col">地点</th></tr>
+            {% for item in breakings %}
+                <tr><td class="schedule_date">{{item.start_time|date:"Y年m月j日"}}&nbsp;{{item.start_time|time:'H時i分'}}</td><td class="schedule_date">{{item.end_time|date:"Y年m月j日"}}&nbsp;{{item.end_time|time:'H時i分'}}</td><td>{{item.point}}</td></tr>
+            {% endfor %}
+        </table><br>
+
+        <table class="info_table">
+            <tr><th class="colored__col mini__col">走行距離</th><td>{{book.distance}}　km</td></tr>
+            <tr><th class="colored__col mini__col">補給量</th><td>{{book.oil}}　L</td></tr>
+            <tr><th class="colored__col mini__col">通行料金</th><td>{{book.toll}}　円</td></tr>
+        </table><br>
+           
+        （総務使用欄）<br>
+        <div class="footer__container">
+            <div class="footer__text"></div><div class="footer__sub"></div><div class="footer__sub"></div>
+        </div>
+
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'order/css/home.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="post">{% csrf_token %}
+            使用期間による絞り込み
+            <div class="time__manager__box">
+                <span class="inputWithIcon"><input type="datetime-local" name="narrow_start_datetime" value={{narrow_start_datetime}} placeholder="開始日時"></span>
+                <span class="inputWithIcon"><input type="datetime-local" name="narrow_end_datetime" value={{narrow_end_datetime}} placeholder="終了日時"></span><br>
+                <button type="submit" class="time__narrow__btn" name="action" value="narrow"><i class="fas fa-search"></i>&nbsp;絞り込み</button>
+            </div>
+        </form>
+        車種による絞り込み
+        <div class="car__item__manager">
+            <button type="button" class="car__item__toggle" data-filter=".passenger"><i class="fas fa-car-side fa-2x"></i></button>
+            <button type="button" class="car__item__toggle" data-filter=".van"><i class="fas fa-shuttle-van fa-2x"></i></button>
+            <button type="button" class="car__item__toggle" data-filter=".truck"><i class="fas fa-truck fa-2x"></i></button>
+            <button type="button" class="car__item__toggle" data-filter=".special"><i class="fas fa-snowplow fa-2x"></i></button>
+            <button type="button" class="car__item__toggle" data-filter=".heart"><i class="fas fa-heart fa-2x"></i></button>
+            <button type="button" class="car__item__toggle" data-filter="*"><i class="fas fa-times-circle fa-2x"></i></button>
+        </div>
+        <div class="car__item__list">
+            {% for car in cars %}
+                <div class="car__item mix filter {{car.category}} {% if car in favorite_cars %}heart{% endif %}">
+                    <img src="{{car.image.url}}" />
+                    <div class="card__title">{{car.name}}</div>
+                    <form action="" method="post">{% csrf_token %}
+                        <input type="text" name="car_pk" value="{{car.pk}}" hidden>
+                        <div class="card__btn__list">
+                            <button type="submit" class="card__btn" name="action" value="booking"><i class="fas fa-calendar-alt fa-lg"></i><br>予約</button>
+                            <button type="button" class="card__btn open__modal" id="{{car.name}}"><i class="fas fa-heart fa-lg"></i></i><br>保存</button>
+                            <section id="modal__area__{{car.name}}" class="modal__area">
+                                <div id="back--{{car.name}}" class="modal__background"></div>
+                                    <div class="modal__contents">
+                                        <h1>お気に入り登録</h1>
+                                        <hr>
+                                        車両：{{car.name}}<br>
+                                        {% if user.is_authenticated %}
+                                            {% if car in favorite_cars %}
+                                                <button type="submit" class="favorite__btn" name="action" value="remove_favorite">解除</button>
+                                            {% else %}
+                                                <button type="submit" class="favorite__btn" name="action" value="add_favorite">追加</button>
+                                            {% endif %}
+                                        {% else %}
+                                            ※ログインユーザのみ利用可能<br>
+                                        {% endif %}
+                                        <button type="button" class="close__modal" id="close--{{car.name}}">閉じる</button>
+                                    </div>
+                            </section>
+                        </div>
+                    </form>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'order/js/home.js' %}"></script>
+{% endblock %}

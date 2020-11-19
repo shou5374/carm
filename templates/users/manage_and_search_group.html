@@ -1,0 +1,54 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'users/css/manage_and_search_group.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="users__container">
+    <img src="{% static 'common/images/logo_mini.png'%}" height="80px">
+    <h1>Manage・Search Group</h1>
+    
+    <h2>グループ検索</h2>
+    <form action="" method="post">{% csrf_token %}
+        <div class="search__group">
+            <input class="search__input" type="text" name="searched_group_name" placeholder="group name">
+            <button class="search__btn" type="submit" name='action' value='search_group'>検索</button><br>
+            <input class="group__text" name="search_result" value="{% if searched_group_name is not None %}{{searched_group_name}}{% else %}該当グループなし{% endif %}" readonly><br>
+            {% if member_status == "not_application" %}
+                <button class="application__btn" type="submit" name='action' value='application'>参加申請</button>
+            {% elif member_status == "unapproved" %}
+                <button class="application__btn">参加申請済み</button>
+            {% else %}
+                <button class="application__btn">参加済み</button>
+            {% endif %}
+            
+        </div>
+    </form><br>
+
+    <h2>所属グループ一覧</h2>
+    {% for group in belong_groups %}
+        <div class="belong__group__item">
+            <form action="" method="post">{% csrf_token %}
+                <input class="belong__group__item_text" name="group_name" value="{{group.name}}" readonly><br>
+                {% if group == user.active_group %}
+                    <button class="application__btn" type="button">アクティブ済み</button>
+                {% else %}
+                    <button class="application__btn" type="submit" name='action' value='activation'>アクティブ化</button>
+                {% endif %}
+                &nbsp
+                {% if group.leader == user %}
+                    <a href="{% url 'users:manage_group' group.name %}"><button class="application__btn" type="button">管理画面へ</button></a>
+                {% else %}
+                    <button class="application__btn" type="button">非管理者</button>
+                {% endif %}
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'users/js/manage_and_search_group.js' %}"></script>
+{% endblock %}

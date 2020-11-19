@@ -1,0 +1,149 @@
+.container {
+    /* border: 1px solid black; */
+    padding-top: 10px;
+    /* width: 480px; */
+    width: 320px;
+    margin:auto;
+    margin-bottom: 100px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+}
+
+.car_image {
+    height: 200px;
+    width: 250px;
+    border: 4px dotted black;
+    border-radius: 1rem;
+}
+
+.car__input input, button{
+    width: 85%;
+    font-size: 16px;
+    border: 1px solid #505050;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    color: #505050;
+}
+
+.car__input__errors {
+    width: 80%;
+    border: dashed 2px #5b3256;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    padding: 0.5rem 1rem;
+    color: red;
+    line-height: 20px;
+}
+
+.car__submit {
+    cursor: pointer;
+    background-color: #5b3256;
+    text-align: center;
+    color: white;
+}
+
+.car__submit:hover {
+    opacity: 0.5;
+}
+
+.car__input__label {
+    width: 35%;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: -5px;
+    line-height: 20px;
+}
+
+
+/* Modal */
+.modal__area {
+    display: none;
+    position: fixed;
+    z-index: 10; /*サイトによってここの数値は調整 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal__background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.9);
+}
+
+.modal__contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 320px;
+    min-height: 100px;
+    background-color: #fff;
+    color: black;
+    font-size: 16px;
+    line-height: 25px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.close__modal {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+}
+
+.close__modal:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+
+.schedule__container {
+    line-height: 16px;
+    font-size: 15px;
+}
+
+
+.schedule__item {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    color: black;
+    border-bottom: 1px dotted black;
+}
+
+.schedule__item:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.hidden__block {
+    display: none;
+}
+
+.booked {
+    background-color: black;
+    color: white;
+    border-bottom: 1px dotted gray;
+}
+
+.not_booked {
+    background-color: white;
+    border-bottom: 1px dotted gray;
+}
+
+.car__error__list {
+    width: 80%;
+    border: dashed 2px #5b3256;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding: 0.5rem 1rem;
+    color: red;
+    line-height: 20px;
+}

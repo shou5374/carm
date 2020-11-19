@@ -1,0 +1,196 @@
+.container {
+    /* border: 1px solid black; */
+    padding: 10px 0;
+    width: 80%;
+    margin:auto;
+    margin-bottom: 100px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* TimeManger */
+.time__manager__box {
+    width: 95%;
+    padding: 0.2em 0.2em;
+    margin: 1em 0;
+    margin-bottom: 30px;
+    background: #d6ebff;
+    box-shadow: 0px 0px 0px 10px #d6ebff;
+    border: dashed 2px white;
+}
+
+.add__btn {
+    width: 80%;
+    padding: 5px 0px;
+    margin: 10px 0 5px 0;
+    font-size: 14px;
+}
+
+.car__item__manager {
+    margin: 0;
+    text-align: center;
+}
+
+
+.car__item__toggle {
+    height: 45px;
+    width: 45px;
+    padding: 0;
+    background-color: white;
+    border: none;
+}
+
+.car__item__toggle:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.car__item__toggle:focus {
+    border: none;
+    color: red;
+}
+
+
+.car__item__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.car__item {
+    border: 1px solid #333;
+    width: 100px;
+    height: 150px;
+}
+
+/* Card */
+.car__item {
+    border-radius: 3px;
+}
+
+.car__item > img {
+    width: 100%;
+    height: 80px;
+    margin: 0;
+    vertical-align:top;
+}
+  
+.car__item .card__title {
+    font-size: 13px;
+    height: 28px;
+}
+
+.card__btn__list {
+    height: 42px;
+    background-color: #333;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card__btn {
+    width: 50%;
+    padding: 0;
+    padding-top: 5px;
+    margin: 0;
+    font-size: 14px;
+    color: white;
+    background-color: #333;
+}
+
+.card__btn:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+
+/* Modal */
+.modal__area {
+    display: none;
+    position: fixed;
+    z-index: 10; /*サイトによってここの数値は調整 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal__background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.9);
+}
+
+.modal__contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 320px;
+    min-height: 100px;
+    background-color: #fff;
+    color: black;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.close__modal {
+    width: 45%;
+    height: 30px;
+    padding: 0;
+}
+
+.remove__btn {
+    width: 45%;
+    height: 30px;
+    padding: 0;
+}
+
+.preview__img__space {
+    margin: 0 auto 0px;
+    width: 250px;
+    height: 200px;
+    border: #008b8b dotted;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.preview__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100%;
+
+}
+
+.car__input {
+    width: 250px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.car__selece__input {
+    width: 258px;
+    height: 27px;
+    margin-top: 10px;
+}
+
+.error__list {
+    margin: 0 auto 0;
+    width: 250px;
+    border: 2px dotted black;
+    color: red;
+}
+
+
+@media only screen and (max-width: 420px) {
+    .container {
+        width: 320px;
+    }
+
+
+}
