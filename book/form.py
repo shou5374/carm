@@ -5,6 +5,7 @@ from users.models import User, UserGroup
 from django.utils.translation import gettext, gettext_lazy as _
 from django.db.models import Q
 from datetime import datetime, date, timedelta
+from django.utils import timezone
 
        
 class BookingForm(forms.Form):
@@ -41,17 +42,15 @@ class BookingForm(forms.Form):
     
     start_datetime = forms.DateTimeField(
         label=_('借用日時'),
-        widget=forms.TextInput(attrs={
-            "type": "datetime-local",
-        }),
+        widget=forms.DateTimeInput(attrs={"type": "datetime-local", "value": timezone.datetime.now().strftime('%Y-%m-%dT%H:%M')}),
+        input_formats=['%Y-%m-%dT%H:%M'],
         required=True,
     )
 
     end_datetime = forms.DateTimeField(
         label=_('返却日時'),
-        widget=forms.TextInput(attrs={
-            "type": "datetime-local",
-        }),
+        widget=forms.DateTimeInput(attrs={"type": "datetime-local", "value": timezone.datetime.now().strftime('%Y-%m-%dT%H:%M')}),
+        input_formats=['%Y-%m-%dT%H:%M'],
         required=True,
     )
 
