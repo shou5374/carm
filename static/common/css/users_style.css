@@ -9,7 +9,24 @@
     line-height: 50px;
 }
 
-.users__input input, button{
+.users__input {
+    margin-right: -18px;
+    line-height: 5px;
+    font-size: 13px;
+    text-align: left;
+}
+
+.users__input input{
+    width: 85%;
+    font-size: 16px;
+    border: 1px solid #505050;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    color: #505050;
+}
+
+.users__submit {
     width: 85%;
     font-size: 16px;
     border: 1px solid #505050;

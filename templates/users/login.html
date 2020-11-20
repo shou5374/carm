@@ -19,10 +19,11 @@
                 {% endif %}
                 {% for field in form %}
                     <div class="users__input">
-                        {{ field }}
+                        {{field.label}}<br>
+                        {{ field }}<br><br><br><br>
                     </div>
                 {% endfor %}
-                <div class="users__input"><button class="users__submit" type="submit" name='action' value='login'>Login to CARM</button><br></div>
+                <button class="users__submit" type="submit" name='action' value='login'>Login to CARM</button><br>
             </form>
             Do you have account ?&nbsp;<a href="{% url 'users:sign_up' %}">Sign up</a>
     </div>

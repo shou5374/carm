@@ -17,7 +17,17 @@
     border-radius: 1rem;
 }
 
-.car__input input, button{
+.car__input input{
+    width: 85%;
+    font-size: 16px;
+    border: 1px solid #505050;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    color: #505050;
+}
+
+.car__submit {
     width: 85%;
     font-size: 16px;
     border: 1px solid #505050;
