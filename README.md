@@ -23,7 +23,7 @@ $ sudo apt-get install build-essential python3-dev python3-pip python3-setuptool
 
 ※ SECRET_KEYは各自設定  
 
-# Init Database
+# Initialize Database
 
 ```sh
 $ bash init_db.sh  
