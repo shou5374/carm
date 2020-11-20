@@ -5,17 +5,20 @@
 http://carm.jp
 
 # Maintenance
-* 20-11-20 EC2上でのみ日報の文字化け  
+* 20-11-20 EC2上でのみ日報の文字化け
+* 20-11-20 SSL未対応
 
 # Environment
+* Ubuntu 18.04 LTS (それ以外はrequirements.txtに記載)  
+
 ```sh
 $ conda create -n py37-carm python==3.7  
 $ conda activate py37-carm  
 $ pip install -r requirements.txt  
 ```
-※ 上記はローカル環境のみを想定. 場合によっては以下を実行する必要あり  
+※ 上記はローカル環境のみを想定. 場合によっては以下を実行する必要あり 
 ```sh
-$ sudo apt-get install libgtk-3-dev  
+$ sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info 
 ```
 
 ※ SECRET_KEYは各自設定  
