@@ -2,11 +2,10 @@
 
 # CARM : Car managemet system
 下記のリンクからサイトにアクセス可能です  
-http://carm.jp
+https://carm.jp
 
 # Maintenance
 * 20-11-20 EC2上でのみ日報の文字化け
-* 20-11-20 SSL未対応
 
 # Environment
 * Ubuntu 18.04 LTS (それ以外はrequirements.txtに記載)  
