@@ -11,9 +11,9 @@ https://carm.jp
 * Ubuntu 18.04 LTS (それ以外はrequirements.txtに記載)  
 
 ```sh
-$ conda create -n py37-carm python==3.7  
-$ conda activate py37-carm  
-$ pip install -r requirements.txt  
+$ bash bin/setup.sh --create
+$ bash bin/setup.sh --install
+$ bash bin/setup.sh --start
 ```
 ※ 上記はローカル環境のみを想定. 場合によっては以下を実行する必要あり 
 ```sh
@@ -25,7 +25,7 @@ $ sudo apt-get install build-essential python3-dev python3-pip python3-setuptool
 # Initialize Database
 
 ```sh
-$ bash init_db.sh  
+$ bash bin/setup.sh --start
 ```
 ※ 必要に応じてスーパーユーザの設定を変更 
 
